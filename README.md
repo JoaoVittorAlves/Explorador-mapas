@@ -80,20 +80,6 @@ Nos dois casos o splay leva o local até a raiz. A interface mostra:
   - O que muda é **quem** sobe: os níveis altos passam a funcionar como o
     "zoom" de um mapa real, mostrando só os locais mais importantes.
   - No modelo clássico, o nível 4 mostraria locais aleatórios.
-- **Custo da busca (medido em 500 buscas):**
-
-  | Configuração | Passos em média | Pior caso |
-  |---|---|---|
-  | Nossa (relevância, 5 níveis) | 95,5 | 175 |
-  | Clássica (sorteio, 5 níveis) | 92,3 | 177 |
-  | Clássica (sorteio, 12 níveis) | 22,9 | 36 |
-  | Lista simples | 1.290 | 2.580 |
-
-  Definir o nível pela relevância não piora a busca. O limite de 5 níveis
-  (`max_nivel = 4`, um por nível de zoom) é que impede o O(log n): para
-  2.580 locais seriam necessários uns 11 níveis.
-- **Observação:** muitos locais têm a mesma relevância. O empate é
-  resolvido pelo `id`.
 
 ### Skip List: busca por intervalo de distância em um nível
 
@@ -254,23 +240,7 @@ Os 18 testes verificam:
   - local inexistente não entra na árvore;
   - registro de zig, zig-zig e zig-zag (um nome por passo).
 
-## Processo de desenvolvimento
-
-1. Projeto-base com as três estruturas na forma clássica e 12 locais de
-   exemplo.
-2. Testes isolados das estruturas e implementação das modificações
-   descritas acima.
-3. Script de coleta do Wikidata e geração da base do Nordeste.
-4. Troca da chave provisória (`id`) da Skip List pela chave geográfica.
-5. Novas rotas no `app.py` e filtros na interface:
-   - busca por nome;
-   - intervalo de distância;
-   - categoria;
-   - nível;
-   - ponto de referência ao clicar no mapa.
-6. Melhoria das visualizações:
-   - Skip List com distância, total de nós e caminho destacado;
-   - Splay Tree com contadores e rotações.
-7. Splay Tree passa a funcionar como cache da rota `/api/local/<id>` e o
-   registro das rotações é corrigido (detalhes em `ALTERACOES.md`).
+## Integrantes 
+- João Vittor de Araújo Alves 
+- Georgiana Maria Graça 
 
