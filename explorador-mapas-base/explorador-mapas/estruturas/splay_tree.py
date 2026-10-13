@@ -41,9 +41,8 @@ class SplayTree:
         # De onde veio o último local acessado: "cache" ou "base".
         self.ultima_origem = None
 
-    # ============================================================
+ 
     # ROTAÇÕES
-    # ============================================================
 
     def _rotacao_direita(self, x):
         y = x.esquerda
@@ -61,9 +60,6 @@ class SplayTree:
 
         return y
 
-    # ============================================================
-    # SPLAY
-    # ============================================================
 
     def _splay(self, raiz, chave):
         """
@@ -83,18 +79,16 @@ class SplayTree:
         # rotação dupla.
         passo = "zig"
 
-        # --------------------------------------------------------
+        
         # CHAVE ESTÁ NA SUBÁRVORE ESQUERDA
-        # --------------------------------------------------------
 
         if chave < raiz.chave:
 
             if raiz.esquerda is None:
                 return raiz
 
-            # -----------------------------
+            
             # ZIG-ZIG
-            # -----------------------------
 
             if chave < raiz.esquerda.chave:
 
@@ -107,9 +101,8 @@ class SplayTree:
 
                 passo = "zig-zig"
 
-            # -----------------------------
+            
             # ZIG-ZAG
-            # -----------------------------
 
             elif chave > raiz.esquerda.chave:
 
@@ -125,9 +118,8 @@ class SplayTree:
 
                     passo = "zig-zag"
 
-            # -----------------------------
+            
             # SEGUNDA ROTAÇÃO (OU ZIG)
-            # -----------------------------
 
             if raiz.esquerda is None:
                 # Só a primeira rotação aconteceu: conta como zig.
@@ -138,18 +130,16 @@ class SplayTree:
 
             return self._rotacao_direita(raiz)
 
-        # --------------------------------------------------------
+
         # CHAVE ESTÁ NA SUBÁRVORE DIREITA
-        # --------------------------------------------------------
 
         else:
 
             if raiz.direita is None:
                 return raiz
 
-            # -----------------------------
+            
             # ZIG-ZIG
-            # -----------------------------
 
             if chave > raiz.direita.chave:
 
@@ -162,9 +152,8 @@ class SplayTree:
 
                 passo = "zig-zig"
 
-            # -----------------------------
+            
             # ZIG-ZAG
-            # -----------------------------
 
             elif chave < raiz.direita.chave:
 
@@ -180,9 +169,8 @@ class SplayTree:
 
                     passo = "zig-zag"
 
-            # -----------------------------
-            # SEGUNDA ROTAÇÃO (OU ZIG)
-            # -----------------------------
+
+            # SEGUNDA ROTAÇÃO (OU ZIG
 
             if raiz.direita is None:
                 # Só a primeira rotação aconteceu: conta como zig.
@@ -193,9 +181,7 @@ class SplayTree:
 
             return self._rotacao_esquerda(raiz)
 
-    # ============================================================
-    # INSERÇÃO
-    # ============================================================
+
 
     def inserir(self, chave, valor):
         """
@@ -238,9 +224,6 @@ class SplayTree:
         self.raiz = novo
         self.tamanho += 1
 
-    # ============================================================
-    # BUSCA
-    # ============================================================
 
     def buscar(self, chave):
         """
@@ -262,9 +245,6 @@ class SplayTree:
 
         return None
 
-    # ============================================================
-    # ACESSO
-    # ============================================================
 
     def acessar(self, chave, carregar):
         """
@@ -295,9 +275,6 @@ class SplayTree:
         self.ultimo_removido = None
         self.ultima_origem = None
 
-        # --------------------------------------------------------
-        # 1. PROCURAR NO CACHE (A PRÓPRIA ÁRVORE)
-        # --------------------------------------------------------
 
         encontrado = self.buscar(chave)
 
@@ -311,9 +288,8 @@ class SplayTree:
         # Guardamos os passos da busca antes da inserção.
         rotacoes_busca = list(self.ultimas_rotacoes)
 
-        # --------------------------------------------------------
+    
         # 2. FALHA NO CACHE: BUSCAR NA BASE
-        # --------------------------------------------------------
 
         valor = carregar(chave)
 
@@ -322,9 +298,8 @@ class SplayTree:
 
         self.ultima_origem = "base"
 
-        # --------------------------------------------------------
+        
         # 3. PRIMEIRO ACESSO: INSERIR NA ÁRVORE
-        # --------------------------------------------------------
 
         self.inserir(chave, valor)
 
@@ -334,9 +309,8 @@ class SplayTree:
             rotacoes_busca + rotacoes_insercao
         )
 
-        # --------------------------------------------------------
-        # CONTROLE DE CAPACIDADE
-        # --------------------------------------------------------
+        
+        # CONTROLE DE CAPACIDAD
 
         if (
             self.capacidade is not None
@@ -346,9 +320,6 @@ class SplayTree:
 
         return self.raiz.valor
 
-    # ============================================================
-    # REMOÇÃO ADAPTADA
-    # ============================================================
 
     def _remover_folha_mais_profunda(self):
         """
@@ -424,9 +395,6 @@ class SplayTree:
         self.tamanho -= 1
         self.ultimo_removido = mais_funda.valor
 
-    # ============================================================
-    # HISTÓRICO
-    # ============================================================
 
     def historico(self):
         """
@@ -465,9 +433,6 @@ class SplayTree:
 
         return locais
 
-    # ============================================================
-    # PERCURSO EM ORDEM
-    # ============================================================
 
     def em_ordem(self):
         """

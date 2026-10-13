@@ -274,5 +274,3 @@ Os 18 testes verificam:
 7. Splay Tree passa a funcionar como cache da rota `/api/local/<id>` e o
    registro das rotações é corrigido (detalhes em `ALTERACOES.md`).
 
-O desenvolvimento contou com o auxílio de LLM (Claude), como permitido no
-enunciado.
