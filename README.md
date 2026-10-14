@@ -2,6 +2,9 @@
 
 Projeto da disciplina de Estrutura de Dados e Algoritmos II.
 
+## Link para vídeo de demonstração
+https://youtu.be/G1eHi9ETHlg
+
 A aplicação permite visualizar uma base de 2.580 pontos de interesse do
 Nordeste brasileiro (praias, museus, igrejas, parques, monumentos etc.).
 As estruturas de dados são usadas tanto para organizar os dados quanto para
